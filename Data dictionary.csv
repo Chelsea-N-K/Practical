@@ -1,0 +1,26 @@
+table_name,column_name,description,datatype,primary_key,foreign_key
+Patients,patient_ID,"Unique identifier assigned to the patient",INT,Yes,No
+Patients,lname,"Patient's last name",TEXT,No,No
+Patients,fname,"Patient's first name",TEXT,No,No
+Patients,minitial,"Patient's middle initial",TEXT,No,No
+Patients,dob,"Patient's date of birth",DATE,No,No
+Patients,age,"Patient's age",INT,No,No
+Patients,sex,"Patient's gender",TEXT,No,No
+Patients,race,"Patient's race",TEXT,No,No
+Patients,ethnicity,"Patient's ethnical background",TEXT,No,No
+Facility,facility_ID,"Unique identifier assigned to the facility",INT,Yes,No
+Facility,facilityname,"The facility's name",TEXT,No,No
+Facility,fcity,"The city to which the facility belongs",TEXT,No,No
+Facility,fcounty,"The county to which the facility belongs",TEXT,No,No
+Facility,fstate,"The state to which the facility belongs",TEXT,No,No
+Facility,phonenumber,"The facility's phone number",INT,No,No
+Address,address_ID,"Unique identifier assigned to the patient's personal address",INT,Yes,No
+Address,patient_ID,"Unique identifier assigned to the patient",INT,No,"References Patients(patient_ID)"
+Address,facility_ID,"Unique identifier assigned to the facility",INT,No,"References Facility(facility_ID)"
+Address,pstreet,"The street along which the patient lives",TEXT,No,No
+Address,pcity,"The city in which the patient lives",TEXT,No,No
+Address,pcounty,"The county in which the patient lives",TEXT,No,No
+Address,pstate,"The state in which the patient lives",TEXT,No,No
+medical_records,record,"Unique number assigned to the patient in a hospital",INT,Yes,No
+medical_records,patient_ID,"Unique identifier assigned to the patient",INT,No,"References Patients(patient_ID)"
+medical_records,facility_ID,"Unique identifier assigned to the facility",INT,No,"References Facility(facility_ID)"
