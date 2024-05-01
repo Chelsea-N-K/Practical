@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <form action="submit.php" method="POST">
+    <form action="connection.php" method="POST">
         
             <h4>Patient Identifying Information</h4>
             <div class="row" style="padding-top: 30px;">
@@ -133,15 +133,9 @@
         </div>
     </form>
 
-    <script>
-        const mysql = require('mysql');
-
-        const db = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'Password@123',
-        database: 'testDB'
-        });
-    </script>
+    <?php
+    // Include the connection.php file
+    require_once("connection.php");
+    ?>
 </body>
 </html>
