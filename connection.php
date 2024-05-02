@@ -16,7 +16,6 @@ if ($conn->connect_error) {
     echo "Connected successfully";
 }
 
-// Perform MySQL queries or operations here...
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
@@ -33,33 +32,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fcounty = $_POST["fcounty"];
     $fstate = $_POST["fstate"];
     $phonenumber = $_POST["phonenumber"];
-    $facilityname = $_POST["facilityname"];
     $pstreet = $_POST["pstreet"];
     $pcity = $_POST["pcity"];
     $pcounty = $_POST["pcounty"];
     $pstate = $_POST["pstate"];
     $record = $_POST["record"];
 
-    // Insert data into a table
-    $sql = "INSERT INTO Patients (lname, fname, minitial, dob, age, sex, race, ethnicity) 
+    // Insert data into Patients table
+    $sql1 = "INSERT INTO Patients (lname, fname, minitial, dob, age, sex, race, ethnicity) 
     VALUES ('$lname', '$fname', '$minitial', '$dob', '$age', '$sex', '$race', '$ethnicity')";
 
-    $sql = "INSERT INTO Facility (facilityname, fcity, fcounty, fstate, phonenumber) 
+    if ($conn->query($sql1) === TRUE) {
+        echo "New record created successfully for Patients table";
+    } else {
+        echo "Error: " . $sql1 . "<br>" . $conn->error;
+    }
+
+    // Insert data into Facility table
+    $sql2 = "INSERT INTO Facility (facilityname, fcity, fcounty, fstate, phonenumber) 
     VALUES ('$facilityname', '$fcity', '$fcounty', '$fstate', '$phonenumber')";
 
-    $sql = "INSERT INTO Address (facilityname, pstreet, pcity, pcounty, pstate) 
-        VALUES ('$facilityname', '$pstreet', ' $pcity', '$pcounty', '$pstate')";
+    if ($conn->query($sql2) === TRUE) {
+        echo "New record created successfully for Facility table";
+    } else {
+        echo "Error: " . $sql2 . "<br>" . $conn->error;
+    }
 
-    $sql = "INSERT INTO medical_records (record) 
+    // Insert data into Address table
+    $sql3 = "INSERT INTO Address (facilityname, pstreet, pcity, pcounty, pstate) 
+    VALUES ('$facilityname', '$pstreet', '$pcity', '$pcounty', '$pstate')";
+
+    if ($conn->query($sql3) === TRUE) {
+        echo "New record created successfully for Address table";
+    } else {
+        echo "Error: " . $sql3 . "<br>" . $conn->error;
+    }
+
+    // Insert data into medical_records table
+    $sql4 = "INSERT INTO medical_records (record) 
     VALUES ('$record')";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+    if ($conn->query($sql4) === TRUE) {
+        echo "New record created successfully for medical_records table";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql4 . "<br>" . $conn->error;
     }
 }
-
 
 // Close connection
 $conn->close();
